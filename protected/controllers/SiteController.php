@@ -31,6 +31,7 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		$url = $this->createUrl( 'ajaxRequest' );
 
+		$refreshInterval =  yii::app()->params->md_refreshInterval;
 		$script = <<<SCRIPT
 var changed = false;
 
@@ -55,7 +56,7 @@ ajaxCall = function() {
 	changed = false;
 	};
 
-window.setInterval(ajaxCall , 1000);
+window.setInterval(ajaxCall , $refreshInterval);
 
 SCRIPT;
 		yii::app()->clientScript->registerScript('liveMarkDown', $script, CClientScript::POS_READY );

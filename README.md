@@ -8,10 +8,15 @@
 
 You may need to change path to framework in `/index.php` by editing `$yii`.
 
+## Config
+
+- Change the ajax refresh interval time in `protected/config/main.php`, edit `md_refreshInterval` value. 
+( Default to 1000 miliseconds. )
+
 ## How 
 
 - It use [yii build in markdown class](http://www.yiiframework.com/doc/api/1.1/CMarkdown).
-- Trigger an ajax request each second to convert markdown to html (if user type only)
+- Trigger an ajax request each second (default) to convert markdown to html (if user type only)
 
 ## Why 
 
