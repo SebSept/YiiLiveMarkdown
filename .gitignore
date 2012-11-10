@@ -1,0 +1,10 @@
+#yii
+assets/
+protected/runtime/
+themes/classic/views/
+
+# netbeans
+nbproject/
+
+# kde
+.directory
