@@ -15,16 +15,17 @@
 
 <div class="onepcssgrid-1200" id="page">
 
-	<div id="header" >
+	<div id="header" class="onerow">
 		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
 	</div><!-- header -->
 
-	<div id="mainmenu">
+	<div id="mainmenu" class="onerow">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Converter', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-			),
+				array('label' => 'examples (wikipedia)', 'url' => 'http://en.wikipedia.org/wiki/Markdown#Syntax_examples'),
+				),
 		)); ?>
 	</div><!-- mainmenu -->
 
