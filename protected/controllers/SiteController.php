@@ -27,39 +27,16 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$url = $this->createUrl( 'ajaxRequest' );
-
+		$ajaxUrl = $this->createUrl( 'ajaxRequest' );
 		$refreshInterval =  yii::app()->params->md_refreshInterval;
 		$script = <<<SCRIPT
-var changed = false;
-
-$("#raw").keyup( function() {changed=true;} );
-
-successFct = function(data, textStatus) {
-	$("#encoded").html(data);
-};
-
-ajaxCall = function() {
-	if(changed)
-		jQuery.ajax(
-			{
-			url : "$url",
-			dataType : "html",
-			type : "POST",
-			data : 'raw='+$("#raw").val(),
-			success : successFct,
-			error : function() {console.log('ajaxError')}
-			}
-		) 
-	changed = false;
-	};
-
-window.setInterval(ajaxCall , $refreshInterval);
-
+					var ajaxUrl = '$ajaxUrl';
+					var refreshInterval = $refreshInterval;
 SCRIPT;
-		yii::app()->clientScript->registerScript('liveMarkDown', $script, CClientScript::POS_READY );
+		$cs = yii::app()->clientScript;
+		$cs->registerCoreScript('jquery');
+		$cs->registerScript('liveMarkDown', $script, CClientScript::POS_HEAD );
+		$cs->registerScriptFile(yii::app()->baseUrl.'/js/ajaxRequest.js', CClientScript::POS_END);
 		$this->render('index');
 	}
 
